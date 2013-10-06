@@ -1,0 +1,16 @@
+{
+	"name": "galileo",
+	"description": "Galileo",
+	"version": "1.0.2",
+	"author": "Shawn Jonnet",
+	"dependencies": {
+		"commander": "2.x.x",
+		"request": "2.x.x"
+	},
+	"bin": {
+		"clip": "./bin/clip"
+	},
+	"engines": {
+		"node": ">= 0.6.0"
+	}
+}

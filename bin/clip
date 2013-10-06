@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+/**
+ * Kore Clip
+ * Copyright(c) 2012 Koreviz
+ * MIT Licensed
+ */
+var program = require('commander'),
+engine = require('../lib/engine')()
+
+program
+.version('1.0.2')
+
+program.on('--help',
+function() {
+	console.log('  Examples:');
+	console.log('')
+	console.log('    $ clip user:password add http://www.google.com "Google"')
+	console.log('    $ clip user:password list')
+	console.log('    $ clip user:password remove 1234')
+	console.log('')
+})
+program.parse(process.argv)
+
+engine.auth(program.args.shift())
+
+if (program.args.length) {
+	var arg = program.args.shift()
+
+	engine.set(program.args)
+	switch (arg) {
+		case 'add':
+		case 'list':
+		case 'remove':
+		case 'search':
+		engine[arg]()
+		break
+		default:
+		program.args.push(arg)
+		engine.search()
+		break
+	}
+}
+else
+engine.list()
